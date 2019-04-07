@@ -1,0 +1,14 @@
+## This part must be added to the launch.json file of the projectflder you want to use it
+
+{
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/.pioenvs/genericSTM32F103C8/firmware.elf",
+            "name": "Debug Microcontroller",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32F103C8",
+            "configFiles": ["/home/democles/.platformio/packages/tool-openocd/scripts/interface/stlink.cfg",
+                            "/home/democles/.platformio/packages/tool-openocd/scripts/target/stm32f1x.cfg"
+                           ]
+ }
