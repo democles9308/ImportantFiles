@@ -1,14 +1,40 @@
+## added to the settings.json file via the menu option preferences>extension>cortex
+{
+...
+ "cortex-debug.armToolchainPath": "/home/democles/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+ "cortex-debug.openocdPath": "/home/democles/.platformio/packages/tool-openocd/bin/openocd",
+ "cortex-debug.stutilPath": "/home/democles/.platformio/packages/tool-stm32duino/stlink/st-util"
+}
+
+
+
 ## This part must be added to the launch.json file of the projectflder you want to use it
 
 {
             "cwd": "${workspaceRoot}",
             "executable": "${workspaceRoot}/.pioenvs/genericSTM32F103C8/firmware.elf",
-            "name": "Debug Microcontroller",
+            "name": "Debug OpenOCD",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",
             "device": "STM32F103C8",
-            "configFiles": ["/home/democles/.platformio/packages/tool-openocd/scripts/interface/stlink.cfg",
-                            "/home/democles/.platformio/packages/tool-openocd/scripts/target/stm32f1x.cfg"
-                           ]
+            "configFiles": ["interface/stlink.cfg","target/stm32f1x.cfg"]
  }
+
+ ## when using the ST-util
+ 
+ {
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "stutil",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/.pioenvs/genericSTM32F103C8/firmware.elf",
+            "name": "Debug (ST-Util)",
+            "device": "STM32F103C8",
+            "v1": false
+        }
+    ]
+}
